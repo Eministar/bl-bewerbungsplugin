@@ -1,0 +1,134 @@
+# Nicht löschen: Diese Version nutzt das Plugin, um veraltete Configs zu erkennen.
+# Wenn das Plugin später neue Optionen bekommt, kann diese Zahl steigen.
+config-version: 3
+
+# Allgemeine Plugin-Einstellungen.
+settings:
+  # Prefix vor allen Plugin-Nachrichten. Farbcodes mit & werden unterstützt.
+  prefix: "&8[&a&lBewerbung-BL&8] &r"
+
+  # Spieler mit dieser Permission umgehen alle Item-Cooldowns.
+  cooldown-bypass-permission: "bewerbungsplugin.cooldown.bypass"
+
+  # Optionaler Permission-Cooldown:
+  # Mit bewerbungsplugin.cooldown.<sekunden> kann ein Spieler einen eigenen Cooldown bekommen.
+  # Beispiel: bewerbungsplugin.cooldown.30 setzt den Cooldown für alle Items auf 30 Sekunden.
+  # Wenn mehrere solcher Permissions vorhanden sind, wird der kleinste Wert genutzt.
+
+# Nachricht, die beim Serverstart in der Konsole angezeigt wird.
+# Verfügbare Platzhalter: {version}, {configVersion}, {items}
+startup-message:
+  enabled: true
+  lines:
+    - "&8&m----------------------------------------"
+    - "&a&lBL-Bewerbungsplugin &8| &7Version &f{version}"
+    - "&7Config-Version: &f{configVersion}"
+    - "&7Status: &aerfolgreich gestartet"
+    - "&7Geladene Items: &e{items}"
+    - "&7Befehle: &e/spawnitem &8| &e/myplugin reload &8| &e/info"
+    - "&8&m----------------------------------------"
+
+# Alle Chat-Nachrichten des Plugins.
+# Verfügbare Platzhalter je nach Nachricht:
+# {item} = Itemname, {seconds} = verbleibende Cooldown-Sekunden.
+messages:
+  only-players: "&8» &cDieser Befehl ist nur ingame verfügbar."
+  no-permission: "&8» &cDafür fehlt dir die benötigte Berechtigung."
+  spawnitem-usage: "&8» &7Verwendung: &a/spawnitem <Item-Name>"
+  myplugin-usage: "&8» &7Verwendung: &a/myplugin reload"
+  info-usage: "&8» &7Verwendung: &a/info"
+  info: "&8» &aHeyy Yannic&7, vielleicht kennst du mich ja noch. &fIch war ja schonmal im Team xD. Wäre cool wenn ich als Crew-Entwickler das Minecraft Projekt zu unterstützen."
+  item-not-found: "&8» &cDas Item &f{item} &cwurde nicht in der Config gefunden."
+  cooldown-active: "&8» &e{item} &7ist noch im Cooldown. &8(&c{seconds}s&8)"
+  item-received: "&8» &aDu hast &f{item} &aerfolgreich erhalten."
+  item-dropped: "&8» &eDein Inventar ist voll. &f{item} &ewurde vor dir gedroppt."
+  reload-success: "&8» &aDie config.yml wurde erfolgreich neu geladen."
+
+# Sound-Feedback für Nachrichten.
+# name kann eine Bukkit-Konstante wie UI_BUTTON_CLICK oder ein Registry-Key wie ui.button.click sein.
+# Setze name auf "none", wenn für eine Nachricht kein Sound abgespielt werden soll.
+# volume = Lautstärke, pitch = Tonhöhe.
+sounds:
+  enabled: true
+  messages:
+    only-players:
+      name: BLOCK_NOTE_BLOCK_BASS
+      volume: 0.8
+      pitch: 0.6
+    no-permission:
+      name: BLOCK_NOTE_BLOCK_BASS
+      volume: 0.8
+      pitch: 0.6
+    spawnitem-usage:
+      name: UI_BUTTON_CLICK
+      volume: 0.7
+      pitch: 0.8
+    myplugin-usage:
+      name: UI_BUTTON_CLICK
+      volume: 0.7
+      pitch: 0.8
+    info-usage:
+      name: UI_BUTTON_CLICK
+      volume: 0.7
+      pitch: 0.8
+    item-not-found:
+      name: ENTITY_VILLAGER_NO
+      volume: 0.8
+      pitch: 1.0
+    cooldown-active:
+      name: BLOCK_NOTE_BLOCK_BASS
+      volume: 0.8
+      pitch: 0.7
+    item-received:
+      name: ENTITY_PLAYER_LEVELUP
+      volume: 0.8
+      pitch: 1.5
+    item-dropped:
+      name: ENTITY_ITEM_PICKUP
+      volume: 0.8
+      pitch: 1.0
+    reload-success:
+      name: ENTITY_EXPERIENCE_ORB_PICKUP
+      volume: 0.8
+      pitch: 1.2
+    info:
+      name: BLOCK_AMETHYST_BLOCK_CHIME
+      volume: 0.7
+      pitch: 1.1
+
+# Konfigurierbare Items für /spawnitem <Item-Name>.
+# Der Abschnittsname ist der Item-Name für den Befehl, z.B. /spawnitem diamant.
+# Spieler brauchen entweder die Permission des jeweiligen Items oder bewerbungsplugin.spawnitem.*.
+items:
+  diamant:
+    # Bukkit-Materialname.
+    material: DIAMOND
+
+    # Anzahl der Items. Wird automatisch auf die maximale Stackgröße begrenzt.
+    amount: 3
+
+    # Cooldown in Sekunden pro Spieler und pro Item.
+    cooldown: 60
+
+    # Permission, die der Spieler für dieses Item braucht.
+    permission: "bewerbungsplugin.spawnitem.diamant"
+
+    # Optionaler Anzeigename und Lore. Farbcodes mit & werden unterstützt.
+    display-name: "&bBewerbungs-Diamant"
+    lore:
+      - "&7Ein sauber konfiguriertes Beispielitem."
+      - "&8Cooldown: 60 Sekunden"
+
+    # Optional: Verzauberungen.
+    # enchantments:
+    #   unbreaking: 1
+    #   fortune: 2
+
+  apfel:
+    material: GOLDEN_APPLE
+    amount: 1
+    cooldown: 180
+    permission: "bewerbungsplugin.spawnitem.apfel"
+    display-name: "&6Notfall-Apfel"
+    lore:
+      - "&7Für den Moment, in dem es knapp wird."

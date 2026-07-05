@@ -1,0 +1,47 @@
+name: BLBewerbungsplugin
+version: 1.0-SNAPSHOT
+main: dev.eministar.SpawnItemPlugin
+api-version: '26.2'
+author: Eministar
+description: Bewerbungsplugin mit konfigurierbaren Items, Rechten, Cooldowns und Reload.
+
+commands:
+  spawnitem:
+    description: Gibt dir ein konfiguriertes Item.
+    usage: /spawnitem <Item-Name>
+    aliases:
+      - getitem
+  myplugin:
+    description: Verwaltungsbefehl für das Bewerbungsplugin.
+    usage: /myplugin reload
+    aliases:
+      - blbewerbung
+      - bewerbungsplugin
+  info:
+    description: Zeigt eine kurze Bewerbungsinfo.
+    usage: /info
+    aliases:
+      - bewerbungsinfo
+
+permissions:
+  bewerbungsplugin.admin.reload:
+    description: Erlaubt /myplugin reload.
+    default: op
+  bewerbungsplugin.cooldown.bypass:
+    description: Umgeht alle Item-Cooldowns.
+    default: op
+  bewerbungsplugin.cooldown.30:
+    description: Beispiel-Permission für 30 Sekunden Item-Cooldown.
+    default: false
+  bewerbungsplugin.spawnitem.*:
+    description: Erlaubt alle konfigurierten /spawnitem-Items.
+    default: op
+    children:
+      bewerbungsplugin.spawnitem.diamant: true
+      bewerbungsplugin.spawnitem.apfel: true
+  bewerbungsplugin.spawnitem.diamant:
+    description: Erlaubt /spawnitem diamant.
+    default: op
+  bewerbungsplugin.spawnitem.apfel:
+    description: Erlaubt /spawnitem apfel.
+    default: op
