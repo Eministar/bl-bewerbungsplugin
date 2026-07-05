@@ -78,7 +78,7 @@ Cooldowns werden aktuell in `cooldowns.yml` gespeichert, damit keiner einfach re
 
 `cooldowns.yml` kann man nutzen aber nicht wirklich nice für production. YAML für Cooldowns ist bei vielen Spielern einfach meh, weil Datei-Schreiberei langsam und nicht super stabil ist. Eine DB wäre viel cleaner.
 
-Aber DB wäre besser die erwachsene Lösung.
+Aber DB wäre Lösung.
 
 ## Auto Config Update
 
